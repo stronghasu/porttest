@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="animationtest.css" />
+    <style>
+      body {
+        background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+        height: 100vh;
+      }
+      .button   {
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        height: 50px;
+        line-height: 54px;
+        width: 200px;
+        border: 1px solid #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      .button span,
+      .button i {
+        display: inline-block;
+        z-index: 100;
+        font-style: normal;
+      }
+      .backgroundHover {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: #fff;
+      }
+
+      .btn-wrap:nth-child(1) .button {
+        margin: auto;
+        top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-wrap">
+      <a href="#" class="button">
+        <span>H</span><span>O</span><span>V</span><span>E</span><span>R</span>
+        <i>E</i><i>F</i><i>F</i><i>E</i><i>C</i><i>T</i>
+        <b class="backgroundHover"></b>
+      </a>
+    </div>
+    <div class="btn-wrap">
+      <a href="#" class="button">
+        <span>H</span><span>O</span><span>V</span><span>E</span><span>R</span>
+        <i>E</i><i>F</i><i>F</i><i>E</i><i>C</i><i>T</i>
+        <b class="backgroundHover"></b>
+      </a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+
+    <script>
+      var button = document.querySelector(".button"),
+        background = document.querySelector(".backgroundHover"),
+        firstWord = document.querySelectorAll(".button span"),
+        secondWord = document.querySelectorAll(".button i");
+
+      var tl = new TimelineMax({ paused: true });
+      tl.staggerTo(
+        firstWord,
+        1,
+        { color: "rgba(11,73,156)", rotationX: 360, ease: Expo.easeOut },
+        0.03,
+        "#start"
+      );
+      tl.staggerTo(
+        secondWord,
+        1,
+        { color: "rgba(11,73,156)", rotationX: 360, ease: Expo.easeOut },
+        0.03,
+        "#start"
+      );
+      tl.from(
+        background,
+        0.25,
+        { scaleX: "0%", transformOrigin: "left center", ease: Quad.easeImOut },
+        "#start"
+      );
+
+      button.addEventListener("mouseenter", function () {
+        tl.play();
+      });
+
+      button.addEventListener("mouseleave", function () {
+        tl.reverse();
+      });
+    </script>
+    <!-- <script>
+      var button2 = document.querySelector(".button2"),
+        background2 = document.querySelector(".backgroundHover2"),
+        firstWord2 = document.querySelectorAll(".button2 span"),
+        secondWord2 = document.querySelectorAll(".button2 i");
+
+      var tl2 = new TimelineMax({ paused: true });
+      tl2.staggerTo(
+        firstWord2,
+        1,
+        { color: "rgba(11,73,156)", rotationX: 360, ease: Expo.easeOut },
+        0.03,
+        "#start2"
+      );
+      tl2.staggerTo(
+        secondWord2,
+        1,
+        { color: "rgba(11,73,156)", rotationX: 360, ease: Expo.easeOut },
+        0.03,
+        "#start2"
+      );
+      tl2.from(
+        background2,
+        0.25,
+        { scaleX: "0%", transformOrigin: "left center", ease: Quad.easeImOut },
+        "#start2"
+      );
+
+      button2.addEventListener("mouseenter", function () {
+        tl.play();
+      });
+
+      button2.addEventListener("mouseleave", function () {
+        tl.reverse();
+      });
+    </script> -->
+  </body>
+</html>
